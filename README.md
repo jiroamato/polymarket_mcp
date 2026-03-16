@@ -33,7 +33,7 @@ If you already have `fastmcp` and `httpx` installed in your Python environment, 
 {
   "mcpServers": {
     "polymarket": {
-      "command": "python",
+      "command": "/path/to/python",
       "args": [
         "/absolute/path/to/polymarket_mcp/src/polymarket_mcp/server.py"
       ],
@@ -54,7 +54,7 @@ If you already have `fastmcp` and `httpx` installed in your Python environment, 
 {
   "mcpServers": {
     "polymarket": {
-      "command": "python",
+      "command": "/path/to/python",
       "args": [
         "/absolute/path/to/polymarket_mcp/src/polymarket_mcp/server.py"
       ],
