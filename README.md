@@ -84,6 +84,26 @@ python src/polymarket_mcp/server.py
 claude mcp add polymarket -- uv run --with fastmcp --with httpx fastmcp run src/polymarket_mcp/server.py
 ```
 
+Or, add to your `.claude.json`:
+
+```json
+{
+  "mcpServers": {
+    "polymarket": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--with", "fastmcp",
+        "--with", "httpx",
+        "fastmcp",
+        "run",
+        "/absolute/path/to/polymarket_mcp/src/polymarket_mcp/server.py"
+      ]
+    }
+  }
+}
+```
+
 **Claude Desktop** — add to `claude_desktop_config.json`:
 
 ```json
