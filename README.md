@@ -13,36 +13,78 @@ An MCP (Model Context Protocol) server that provides tools for querying [Polymar
 
 ## Installation
 
-Requires Python 3.10+ and [`uv`](https://docs.astral.sh/uv/).
+Requires Python 3.10+.
 
 ```bash
 git clone https://github.com/jiroamato/polymarket_mcp.git
 cd polymarket_mcp
-uv sync
+pip install -e .
 ```
 
 ## Usage
 
-### Claude Code
+### Option 1: Direct Python (recommended)
 
-The recommended way to add this server to Claude Code:
+If you already have `fastmcp` and `httpx` installed in your Python environment, you can point directly at the server script.
+
+**Claude Code** — add to your `.claude.json`:
+
+```json
+{
+  "mcpServers": {
+    "polymarket": {
+      "command": "python",
+      "args": [
+        "/absolute/path/to/polymarket_mcp/src/polymarket_mcp/server.py"
+      ],
+      "env": {
+        "PYTHONUNBUFFERED": "1"
+      }
+    }
+  }
+}
+```
+
+**Claude Desktop** — add to your `claude_desktop_config.json`:
+
+- **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+
+```json
+{
+  "mcpServers": {
+    "polymarket": {
+      "command": "python",
+      "args": [
+        "/absolute/path/to/polymarket_mcp/src/polymarket_mcp/server.py"
+      ],
+      "env": {
+        "PYTHONUNBUFFERED": "1"
+      }
+    }
+  }
+}
+```
+
+> Replace `python` with the full path to your interpreter if needed (e.g., `C:/Users/you/miniforge3/python`).
+
+**Standalone:**
+
+```bash
+python src/polymarket_mcp/server.py
+```
+
+### Option 2: Using uv (no pre-installed dependencies needed)
+
+[`uv`](https://docs.astral.sh/uv/) handles dependency isolation automatically — no need to install `fastmcp` or `httpx` yourself.
+
+**Claude Code:**
 
 ```bash
 claude mcp add polymarket -- uv run --with fastmcp --with httpx fastmcp run src/polymarket_mcp/server.py
 ```
 
-Or if you've cloned the repo locally:
-
-```bash
-claude mcp add polymarket -- uv run --project /path/to/polymarket_mcp fastmcp run src/polymarket_mcp/server.py
-```
-
-### Claude Desktop
-
-Add the following to your `claude_desktop_config.json`:
-
-- **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
-- **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+**Claude Desktop** — add to `claude_desktop_config.json`:
 
 ```json
 {
@@ -62,18 +104,10 @@ Add the following to your `claude_desktop_config.json`:
 }
 ```
 
-Restart Claude Desktop after saving.
-
-### Standalone
+**Standalone:**
 
 ```bash
 uv run fastmcp run src/polymarket_mcp/server.py
-```
-
-### Direct Python
-
-```bash
-uv run python -m polymarket_mcp.server
 ```
 
 ## Example Prompts
