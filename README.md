@@ -52,7 +52,7 @@ If you already have `fastmcp` and `httpx` installed in your Python environment, 
 {
   "mcpServers": {
     "polymarket": {
-      "command": "python",
+      "command": "/path/to/python",
       "args": [
         "/absolute/path/to/polymarket_mcp/src/polymarket_mcp/server.py"
       ],
@@ -73,7 +73,7 @@ If you already have `fastmcp` and `httpx` installed in your Python environment, 
 {
   "mcpServers": {
     "polymarket": {
-      "command": "python",
+      "command": "/path/to/python",
       "args": [
         "/absolute/path/to/polymarket_mcp/src/polymarket_mcp/server.py"
       ],
@@ -101,6 +101,26 @@ python src/polymarket_mcp/server.py
 
 ```bash
 claude mcp add polymarket -- uv run --with fastmcp --with httpx fastmcp run src/polymarket_mcp/server.py
+```
+
+Or, add to your `.claude.json`:
+
+```json
+{
+  "mcpServers": {
+    "polymarket": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--with", "fastmcp",
+        "--with", "httpx",
+        "fastmcp",
+        "run",
+        "/absolute/path/to/polymarket_mcp/src/polymarket_mcp/server.py"
+      ]
+    }
+  }
+}
 ```
 
 **Claude Desktop** — add to `claude_desktop_config.json`:
