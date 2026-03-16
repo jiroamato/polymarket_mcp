@@ -11,15 +11,34 @@ An MCP (Model Context Protocol) server that provides tools for querying [Polymar
 | `get_event` | Get detailed info about a specific event by ID |
 | `get_market` | Get detailed info about a specific market by ID |
 
+## Dependencies
+
+| Package | Version | Purpose |
+|---------|---------|---------|
+| [fastmcp](https://gofastmcp.com) | `>=2.0.0` | MCP server framework |
+| [httpx](https://www.python-httpx.org) | `>=0.27.0` | HTTP client for calling the Polymarket API |
+
 ## Installation
 
 Requires Python 3.10+.
+
+### With pip
 
 ```bash
 git clone https://github.com/jiroamato/polymarket_mcp.git
 cd polymarket_mcp
 pip install -e .
 ```
+
+### With uv (recommended)
+
+```bash
+git clone https://github.com/jiroamato/polymarket_mcp.git
+cd polymarket_mcp
+uv sync
+```
+
+> `uv sync` reads `pyproject.toml` and installs all dependencies into an isolated virtual environment automatically.
 
 ## Usage
 
